@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* COMMON STYLES */
+.mainWrapper {
+    background-color: #1B262C;
+    min-height: 100vh;
+}
+.contentWrapper {
+    border: #BBE1FA solid 1px;
+    background-color: #0F4C75;
+    min-width: "98%";
+    min-height: calc(100vh -100px);
+}
+.mainText {
+    font-size: 1.4em;
+    font-weight: 700;
+    color: #BBE1FA;
+    text-align: center;
+}
