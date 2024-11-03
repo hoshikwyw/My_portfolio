@@ -4,13 +4,13 @@ import Navbar from './Navbar'
 
 const App = () => {
   return (
-    <div>
-      <div>
+    <div className=' mainWrapper'>
+      <div className=''>
         <Path />
       </div>
-      <div className="">
+      {/* <div className="">
         <Navbar />
-      </div>
+      </div> */}
     </div>
   )
 }
