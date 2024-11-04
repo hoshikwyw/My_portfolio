@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from "gsap";
 import '../assets/css/tileBoard.css'; // Import the custom CSS
+import { IoArrowDownCircleSharp } from "react-icons/io5";
+
 
 const ROWS = 6;
 const COLS = 6;
@@ -152,6 +154,9 @@ const TileBoard = () => {
                     <div className="block" key={index} data-index={index}></div>
                 ))}
             </div>
+            <button className=" absolute bottom-5 right-[48%] translate-x-1/2 -rotate-90 z-50 animate-bounce">
+                <IoArrowDownCircleSharp size={40} color='#06D6A0' />
+            </button>
         </div>
     );
 };
