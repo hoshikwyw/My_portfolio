@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import gsap from "gsap";
 import '../assets/css/tileBoard.css'; // Import the custom CSS
-import { Link } from 'react-router-dom';
 
 const ROWS = 6;
 const COLS = 6;
@@ -134,10 +133,17 @@ const TileBoard = () => {
                 <a href="#">Oro Wee</a>
                 <button id="flipButton" onClick={flipAllTiles}>Flip Tiles</button>
             </nav>
-            <div className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 bg-slate-700 text-white px-3 py-1 rounded-md">
-                <Link to={"/about"}>More About Me</Link>
+            <div className=" absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50">
+                <p className="mainText">
+                    Hello! I'm
+                    <span className="text-blue-500 font-bold"> Khaing Wut Yi Win </span>,
+                    a frontend developer with a passion for building clean, responsive, and user-focused web experiences.
+                    With skills in React, GSAP, and CSS, I specialize in turning creative ideas into seamless digital solutions.
+                    Take a look at my work below, and let’s connect if you're interested in collaborating!
+                </p>
+
             </div>
-            {/* <button className=' absolute top-0 left-0 z-50 bg-black text-white' id="flipButton" onClick={flipAllTiles}>Flip All Tiles</button> */}
+
             <div id="board" ref={boardRef}>
                 {createBoard()}
             </div>
