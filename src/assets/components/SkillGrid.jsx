@@ -1,24 +1,72 @@
 import React from 'react'
-import { FaReact, FaVuejs, FaAngular, FaNodeJs } from "react-icons/fa";
+import { FaReact, FaGitAlt, FaHtml5, FaCss3Alt, FaJsSquare, FaBootstrap } from "react-icons/fa";
+import { SiReactrouter, SiReactquery, SiRedux, SiGreensock, SiTailwindcss } from "react-icons/si";
+import { TbBrandThreejs } from "react-icons/tb";
+
 
 const SkillGrid = () => {
     const icons = [
-        { id: 1, Icon: FaReact, color: "text-blue-400" },
-        { id: 2, Icon: FaVuejs, color: "text-green-500" },
-        { id: 3, Icon: FaAngular, color: "text-red-600" },
-        { id: 4, Icon: FaNodeJs, color: "text-green-400" },
+        { id: 1, color: "#dd4b25" },
+        { id: 2, color: "#18669e" },
+        { id: 3, Icon: FaHtml5, color: "#dd4b25" },
+        { id: 4, Icon: FaCss3Alt, color: "#254bdd" },
+        { id: 5, color: "#339933" },
+        { id: 6, color: "#339933" },
+        { id: 7, color: "#339933" },
+        { id: 8, Icon: FaJsSquare, color: "#efd81d" },
+        { id: 9, Icon: FaBootstrap, color: "#7811f2" },
+        { id: 10, Icon: FaReact, color: "#48cef7" },
+        { id: 11, Icon: SiReactrouter, color: "#ed404d" },
+        { id: 12, color: "#339933" },
+        { id: 13, color: "#339933" },
+        { id: 14, Icon: SiReactquery, color: "#f73f51" },
+        { id: 15, Icon: SiRedux, color: "#7248b6" },
+        { id: 16, Icon: SiGreensock, color: "#8ecd00" },
+        { id: 17, Icon: TbBrandThreejs, color: "#339933" },
+        { id: 18, color: "#339933" },
+        { id: 19, color: "#339933" },
+        { id: 20, color: "#339933" },
+        { id: 21, Icon: SiTailwindcss, color: "#36b7f0" },
+        { id: 22, Icon: FaGitAlt, color: "#e84e31" },
+        { id: 23, color: "#339933" },
+        { id: 24, color: "#339933" },
         // Add more icons and colors as needed
     ];
 
     return (
-        <div className="">
-            <div className="grid grid-cols-5 gap-6 max-w-4xl mx-auto">
+        <div className="w-full h-full flex items-center justify-center">
+            <div className="grid grid-cols-6 gap-4 max-w-4xl mx-auto skillGridContainer p-2">
                 {icons.map(({ id, Icon, color }) => (
                     <div
-                        key={id}
-                        className="bg-gray-800 rounded-lg p-6 flex items-center justify-center hover:bg-gray-700 transition duration-300 shadow-lg"
+                        style={{
+                            cursor: 'pointer',
+                            boxShadow: 'none',
+                            transition: 'box-shadow 0.001s ease-in',
+                        }}
+                        onMouseOver={(e) => {
+                            e.currentTarget.style.boxShadow = `0 0 18px ${color}`;
+                            // e.currentTarget.style.scale = 1.1;
+                        }}
+                        onMouseOut={(e) => {
+                            e.currentTarget.style.boxShadow = 'none';
+                            e.currentTarget.style.transition = 'box-shadow 0.4s ease-out';
+
+                        }}
+                        className="rounded-lg p-4 flex items-center justify-center cardBg2 transition ease-in-out duration-500 cursor-pointer"
                     >
-                        <Icon className={`${color} text-3xl`} />
+                        {Icon ? (
+                            <Icon
+                                color={color}
+                                opacity={1}
+                                style={{
+                                    filter: `drop-shadow(0 0 2px ${color}bb)`,
+                                    boxShadow: "none",
+                                }}
+                                size={38}
+                            />
+                        ) : (
+                            <h1 className='w-[32px] h-[32px]'></h1>
+                        )}
                     </div>
                 ))}
             </div>

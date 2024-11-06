@@ -10,12 +10,12 @@ const About = () => {
     <div id='about' className=' relative min-h-screen max-w-screen p-10'>
       <h1 className=' w-full titleText'>More about me: my skills, my journey, and the knowledge I'm still pursuing</h1>
       <div className=" flex w-full h-full gap-[2%] items-center justify-center">
-        <div className=" rounded-xl w-[25%] h-[85%] cardBg cursor-pointer">
+        <div className=" rounded-xl w-[25%] h-[700px] cardBg cursor-pointer">
           <Character />
         </div>
         <div className=" w-[70%] p-10">
           <div className=" w-full flex gap-[5%]">
-            <div className=' w-[40%] flex flex-col gap-14'>
+            <div className=' w-[50%] flex flex-col gap-10'>
               {/* INFORMATION PART  */}
               <div className=" cardBg rounded-md secondTextColor w-full p-5 flex flex-col gap-5 h-fit">
                 <h1 className=' font-semibold text-xl text-[#fefefe]'>Quick Introduction</h1>
@@ -25,13 +25,14 @@ const About = () => {
                 <p className=' flex items-center gap-2'><FaPhoneAlt color='#3b7299' className='iconShadow4' size={22} /><span className=' text-white font-semibold'>Phone : </span>38478348348</p>
                 <p className=' flex items-center gap-2'><FaEnvelope color='#176736' className='iconShadow5' size={22} /><span className=' text-white font-semibold'>Email : </span>blahblahblah@gmail.com</p>
               </div>
-              <div className=" cardBg w-full rounded-md h-full p-5">
-                <h1 className=' font-semibold text-xl text-[#fefefe] mb-5'>My Technical Abilities</h1>
+              {/* SKILL SHOWCASE GRID  */}
+              <div className=" skillCardBg w-full rounded-md h-full p-4">
+                <h1 className=' font-semibold text-xl text-[#fefefe]'>My Technical Abilities</h1>
                 <SkillGrid />
               </div>
             </div>
             {/* ROADMAP PART  */}
-            <div className="cardBg w-[55%] h-full px-10 py-7 flex flex-col gap-5 items-start justify-start">
+            <div className="cardBg w-[45%] h-full px-10 py-7 flex flex-col gap-5 items-start justify-start">
               <h1 className=' font-semibold text-xl text-[#fefefe] mb-5 -ms-4'>Route to Achievement</h1>
               <Roadmap />
             </div>
