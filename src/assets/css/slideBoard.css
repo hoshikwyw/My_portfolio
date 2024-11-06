@@ -1,0 +1,91 @@
+canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slideContainer a, .slideContainer p {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: "Akkurat Mono", Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.slideContainer {
+    width: 100%;
+    height: 2000vh;
+}
+
+.projectSlider {
+    position: fixed;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    transform-style: preserve-3d;
+    perspective: 500px;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.projectSlide {
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    will-change: transform, opacity;
+}
+
+.projectSlideImg {
+    width: 100%;
+    height: 100%;
+    padding: 0.5em;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(20px);
+}
+
+.slideCopy {
+    position: absolute;
+    width: 100%;
+    bottom: -24px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.slideOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    background: radial-gradient(
+        circle,
+        rgba(0, 0, 0, 0) 60%,
+        rgba(0, 0, 0, 1) 100%
+    );
+}
+
+.lenis.lenisSmooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenisSmooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenisStopped {
+    overflow: hidden;
+}
+
+.lenis.lenisSmooth iframe {
+    pointer-events: none;
+}

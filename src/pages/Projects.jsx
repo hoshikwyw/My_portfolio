@@ -1,10 +1,10 @@
 import React from 'react'
-import ProjectCard from '../commonComponents/ProjectCard'
+import SlideBoard from './SlideBoard'
 
 const Projects = () => {
   return (
-    <div>
-        <ProjectCard />
+    <div id='projects' className=' w-screen'>
+        <SlideBoard />
     </div>
   )
 }
