@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../assets/css/slideBoard.css">
+</head>
+<body>
+    <div class="projectWrapper">
+        <div class="slideContainer">
+            <div class="overlay"></div>
+            <div class="slider"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+    <script id="vertexShader" type="x-shader/x-vertex">
+        void main() {
+            gl_Position = vec4(position, 1.0);
+        }
+    </script>
+    <script id="fragmentShader" type="x-shader/x-fragment">
+        uniform vec2 iResolution;
+        uniform float iTime;
+        uniform float scrollOffset;
+
+        void mainImage(out vec4 o, vec2 I) {
+            I -= o.zw = iResolution.xy / 2.0;
+            float t = iTime * 5.0 + scrollOffset * 200.0;
+            float pattern = sin(atan(I.y, I.x) / 0.1) * sin(20.0 *  (o.w /= length(I)) + t) - 1.0 + o.w;
+
+            float monochrome = 1.0 - pattern * 0.5;
+
+            float invertedMonochrome = 1.0 - monochrome;
+
+            o = vec4(invertedMonochrome, invertedMonochrome, invertedMonochrome, 1.0);
+        }
+
+        void main() {
+            mainImage(gl_FragColor, gl_FragCoord.xy);
+        }
+    </script>
+    <script type="module">
+        import {slides} from "../assets/js/data.js";
+        console.log(slides)
+
+        const lenis = new Lenis()
+        lenis.on("scroll", ScrollTrigger.update);
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000)
+        })
+        gsap.ticker.lagSmoothing(0)
+
+        const scene = new THREE.Scene()
+        const camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1)
+        const renderer = new THREE.WebGLRenderer()
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        document.body.appendChild(renderer.domElement)
+
+        const geometry = new THREE.PlaneGeometry(1, 2)
+        const uniforms = {
+            iTime: {value:0},
+            iResolution: {
+                value: new THREE.Vector2(window.innerWidth, window.innerHeight)
+            },
+            scrollOffset: {value: 0}
+        }
+        const material = new THREE.ShaderMaterial({
+            uniforms: uniforms,
+            vertexShader: document.getElementById("vertexShader").textContent,
+            fragmentShader: document.getElementById("fragmentShader").textContent,
+        })
+        
+        const mesh = new THREE.Mesh(geometry, material)
+        scene.add(mesh)
+
+        let lastTime = 0
+        let isAnimating = true;
+        function animateTunnel(time) {
+            console.log('Animating tunnel...');
+            const deltaTime = time - lastTime
+            lastTime = time
+            uniforms.iTime.value += deltaTime * 0.001
+            renderer.render(scene, camera)
+            if (isAnimating) {
+                requestAnimationFrame(animateTunnel)
+            }
+        }
+        
+
+        animateTunnel(0)
+
+        isAnimating = false
+
+        window.addEventListener("resize", () => {
+            const width = window.innerWidth
+            const height = window.innerHeight
+            renderer.setSize(width, height)
+            uniforms.iResolution.value.set(width, height)
+        })
+
+        gsap.registerPlugin(ScrollTrigger)
+
+        const totalSlides = 7
+        const zStep = 2500
+        const initialZ = -22500
+
+        function generateSlides() {
+            console.log('Generating slides...');
+            if (!slides || slides.length === 0) {
+                console.error("Slides data is not available");
+                return;
+            }
+            const slider = document.querySelector(".slider")
+            slider.innerHTML = ""
+
+            for(let i = 0; i < totalSlides; i++) {
+                console.log(i)
+                const slide = document.createElement("div")
+                slide.className = "slide"
+                slide.id =  `slide-${i}`
+
+                const slideImg = document.createElement("div")
+                slideImg.className = "slide-img"
+
+                const img = document.createElement("img")
+                img.src = `../assets/img${i}.jpg`
+                img.alt = ""
+
+                const slideCopy = document.createElement("div")
+                slideCopy.className = "slide-copy"
+                slideCopy.innerHTML = `<p>${slides[i - 1]?.title}</p><p>${slides[i - 1]?.id}</p>`;
+
+                slideImg.appendChild(img)
+                slide.appendChild(slideImg)
+                slide.appendChild(slideCopy)
+                slider.appendChild(slide)
+
+                const zPosition = initialZ + (i-1) * zStep
+                const xPosition = i % 2 === 0 ? "30%" : "70%"
+                const opacity = i === totalSlides ? 1 : i === totalSlides -1 ? 0 : 0
+
+                gsap.set(slide, {
+                    top: "50%",
+                    left: xPosition,
+                    xPercent : -50,
+                    yPercent : -50,
+                    z : zPosition,
+                    opacity : opacity
+                })
+             }
+        }
+
+        window.addEventListener("load", function () {
+            console.log('Page loaded...');
+            generateSlides()
+
+            const slides = gsap.utils.toArray(".slide")
+
+            function getInitialTranslateZ(slide) {
+                return gsap.getProperty(slide , "z")
+            }
+
+            function mapRange(value, inMin, inMax, outMin, outMax) {
+                return (
+                    ((value - inMin) * (outMax - outMin)) / (inMax - inMin) + outMin
+                )
+            }
+
+            ScrollTrigger.create({
+                trigger: ".slideContainer",
+                start: "top top",
+                end: "bottom bottom",
+                scrub: 1,
+                onUpdate: (self) => {
+                  const progress = self.progress;
+                  const zIncrement = progress * 22500;
+                  const currentZ = initialZ + zIncrement;
+              
+                  slides.forEach((slide) => {
+                    const opacity = mapRange(currentZ, -2500, 0, 0, 1);
+                    slide.style.opacity = opacity;
+                    slide.style.transform = `translateX(-50%) translateY(-50%) translateZ(${currentZ}px)`;
+                  });
+                }
+              });
+        })
+    </script>
+</body>
+</html>

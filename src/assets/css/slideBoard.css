@@ -1,18 +1,21 @@
-canvas {
+
+ canvas {
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 1;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
 }
 
-img {
+ img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
 .slideContainer a, .slideContainer p {
-    color: #fff;
+    /* color: #fff; */
     text-decoration: none;
     text-transform: uppercase;
     font-family: "Akkurat Mono", Arial, Helvetica, sans-serif;
@@ -23,9 +26,12 @@ img {
 .slideContainer {
     width: 100%;
     height: 2000vh;
+    overflow: hidden;
+    position: relative;
+    /* background: #fff; */
 }
 
-.projectSlider {
+.slider {
     position: fixed;
     top: 0;
     width: 100vw;
@@ -36,14 +42,14 @@ img {
     z-index: 2;
 }
 
-.projectSlide {
+.slide {
     position: absolute;
     width: 400px;
     height: 500px;
     will-change: transform, opacity;
 }
 
-.projectSlideImg {
+.slide-img {
     width: 100%;
     height: 100%;
     padding: 0.5em;
@@ -52,7 +58,7 @@ img {
     backdrop-filter: blur(20px);
 }
 
-.slideCopy {
+.slide-copy {
     position: absolute;
     width: 100%;
     bottom: -24px;
