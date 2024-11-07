@@ -9,14 +9,14 @@ import SkillGridLarge from '../assets/components/SkillGridLarge';
 const About = () => {
   return (
     <div id='about' className=' relative min-h-screen max-w-screen p-10'>
-      <h1 className=' w-full titleText'>More about me: my skills, my journey, and the knowledge I'm still pursuing</h1>
-      <div className=" flex w-full h-full gap-[2%] xl:items-center xl:justify-center">
-        <div className=" rounded-xl xl:w-[25%] lg:w-[30%] h-[700px] cardBg cursor-pointer my-10">
+      <h1 className=' w-full titleText my-2'>More about me: my skills, my journey, and the knowledge I'm still pursuing</h1>
+      <div className=" flex xl:flex-row lg:flex-row md:flex-col sm:flex-col xs:flex-col w-full h-full gap-[2%] items-center justify-center">
+        <div className=" rounded-xl xl:w-[25%] lg:w-[30%] md:w-[100%] sm:w-full xs:w-full xl:h-[700px] lg:h-[700px] md:h-[300px] sm:h-[300px] xs:h-[300px] cardBg cursor-pointer xs:my-10 my-0">
           <Character />
         </div>
-        <div className=" xl:w-[70%] w-[70%] p-10">
+        <div className=" xl:w-[70%] lg:w-[70%] w-full m-10 xs:m-0">
           <div className=" w-full flex xl:flex-row lg:flex-col flex-col gap-[20px]">
-            <div className=' xl:w-[50%] lg:w-[100%] flex flex-col gap-10'>
+            <div className=' xl:w-[50%] w-[100%]  flex flex-col gap-10'>
               {/* INFORMATION PART  */}
               <div className=" cardBg rounded-md secondTextColor w-full p-5 flex flex-col gap-5 h-fit">
                 <h1 className=' font-semibold text-xl text-[#fefefe]'>Quick Introduction</h1>
@@ -33,9 +33,9 @@ const About = () => {
               </div>
             </div>
             {/* ROADMAP PART FOR LG AND SMALLER SCREEN  */}
-            <div className="cardBg xl:w-[45%] lg:w-full h-full px-10 py-7 flex flex-col items-start justify-start">
-              <h1 className=' font-semibold text-xl text-[#fefefe] mb-5 -ms-4'>Route to Achievement</h1>
-              <div className=" w-full xl:h-full h-[300px] overflow-scroll p-8 scrollbar-hide">
+            <div className="cardBg xl:w-[45%] lg:w-full h-full px-10 xs:px-5 py-7 xs:py-3 flex flex-col items-start justify-start">
+              <h1 className=' font-semibold text-xl text-[#fefefe] mb-5 xs:mb-0 -ms-4 xs:ms-0'>Route to Achievement</h1>
+              <div className=" w-full xl:h-full h-[300px] overflow-scroll p-8 xs:px-6 scrollbar-hide">
                 <Roadmap />
               </div>
             </div>
