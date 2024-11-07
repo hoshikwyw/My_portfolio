@@ -95,6 +95,50 @@
     background: radial-gradient(circle, rgba(0,0,0,0.85) 0%, rgba(255,255,255,0) 0%, rgba(0,0,0,0.85) 100%);
     z-index: -1;
 }
+
 .skillGridContainer {
     mask-image: linear-gradient(90deg, transparent 0%, #ffffff 200px, #ffffff 300px, transparent 100%);
 }
+.skillGridContainer2 {
+    mask-image: linear-gradient(90deg, transparent 0%, #ffffff 300px, #ffffff 900px, transparent 100%);
+}
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+
+  /* For large screens (desktops and laptops) */
+@media (min-width: 1200px) {
+    .skillGridContainer2 {
+      grid-template-columns: repeat(12, 1fr);
+      gap: 20px;
+    }
+  }
+  
+  /* For medium screens (tablets) */
+  @media (min-width: 768px) and (max-width: 1199px) {
+    .skillGridContainer2 {
+      grid-template-columns: repeat(8, 1fr);
+      gap: 15px;
+    }
+  }
+  
+  /* For small screens (mobile phones) */
+  @media (max-width: 767px) {
+    .skillGridContainer2 {
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+  }
+  
+  /* For extra small screens (small mobile phones) */
+  @media (max-width: 479px) {
+    .skillGridContainer2 {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 5px;
+    }
+  }

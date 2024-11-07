@@ -3,19 +3,20 @@ import Character from '../assets/components/Character'
 import { FaUser, FaCalendarDay, FaHome, FaPhoneAlt, FaEnvelope } from "react-icons/fa";
 import Roadmap from '../assets/components/Roadmap';
 import SkillGrid from '../assets/components/SkillGrid';
+import SkillGridLarge from '../assets/components/SkillGridLarge';
 
 
 const About = () => {
   return (
     <div id='about' className=' relative min-h-screen max-w-screen p-10'>
       <h1 className=' w-full titleText'>More about me: my skills, my journey, and the knowledge I'm still pursuing</h1>
-      <div className=" flex w-full h-full gap-[2%] items-center justify-center">
-        <div className=" rounded-xl w-[25%] h-[700px] cardBg cursor-pointer">
+      <div className=" flex w-full h-full gap-[2%] xl:items-center xl:justify-center">
+        <div className=" rounded-xl xl:w-[25%] lg:w-[30%] h-[700px] cardBg cursor-pointer my-10">
           <Character />
         </div>
-        <div className=" w-[70%] p-10">
-          <div className=" w-full flex gap-[5%]">
-            <div className=' w-[50%] flex flex-col gap-10'>
+        <div className=" xl:w-[70%] w-[70%] p-10">
+          <div className=" w-full flex xl:flex-row lg:flex-col flex-col gap-[20px]">
+            <div className=' xl:w-[50%] lg:w-[100%] flex flex-col gap-10'>
               {/* INFORMATION PART  */}
               <div className=" cardBg rounded-md secondTextColor w-full p-5 flex flex-col gap-5 h-fit">
                 <h1 className=' font-semibold text-xl text-[#fefefe]'>Quick Introduction</h1>
@@ -26,18 +27,25 @@ const About = () => {
                 <p className=' flex items-center gap-2'><FaEnvelope color='#176736' className='iconShadow5' size={22} /><span className=' text-white font-semibold'>Email : </span>blahblahblah@gmail.com</p>
               </div>
               {/* SKILL SHOWCASE GRID  */}
-              <div className=" skillCardBg w-full rounded-md h-full p-4">
+              <div className=" skillCardBg w-full rounded-md h-full p-4 xl:block hidden">
                 <h1 className=' font-semibold text-xl text-[#fefefe]'>My Technical Abilities</h1>
                 <SkillGrid />
               </div>
             </div>
-            {/* ROADMAP PART  */}
-            <div className="cardBg w-[45%] h-full px-10 py-7 flex flex-col gap-5 items-start justify-start">
+            {/* ROADMAP PART FOR LG AND SMALLER SCREEN  */}
+            <div className="cardBg xl:w-[45%] lg:w-full h-full px-10 py-7 flex flex-col items-start justify-start">
               <h1 className=' font-semibold text-xl text-[#fefefe] mb-5 -ms-4'>Route to Achievement</h1>
-              <Roadmap />
+              <div className=" w-full xl:h-full h-[300px] overflow-scroll p-8 scrollbar-hide">
+                <Roadmap />
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      {/* SKILL SHOWCASE GRID  */}
+      <div className=" skillCardBg w-full rounded-md h-full p-4 block xl:hidden">
+        <h1 className=' font-semibold text-xl text-[#fefefe] text-center mb-2'>My Technical Abilities</h1>
+        <SkillGridLarge />
       </div>
     </div>
   )
